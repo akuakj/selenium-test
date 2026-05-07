@@ -16,7 +16,7 @@ class ApplicantForm(BasePage):
         super().__init__(driver)
 
     def fill_surname(self, surname):
-        self.input_text(self.SURNAME_USER, surname, timeout=4)
+        self.input_text(self.SURNAME_USER, surname)
 
     def fill_name(self, name):
         self.input_text(self.NAME_USER, name)

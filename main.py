@@ -3,7 +3,9 @@ from selenium import webdriver
 from home_page import HomePage
 from applicant_form import ApplicantForm
 from service_form import ServiceForm
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from marriage_service.citizen_form import CitizenForm as MarriageCitizenForm
 from marriage_service.marriage_form import MarriageForm
 
@@ -16,6 +18,7 @@ class TestRegistration:
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(5)
+        self.wait = WebDriverWait(self.driver, 10)
 
     def teardown_method(self):
         time.sleep(3)
@@ -26,9 +29,11 @@ class TestRegistration:
 
         # главная страница
         HomePage(self.driver).click_login_as_user()
-        time.sleep(2)
 
         # данные заявителя
+        self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//input[@placeholder='Введите фамилию (минимум 2 символа)']")
+        ))
         applicant = ApplicantForm(self.driver)
         applicant.fill_surname("Ivanov")
         applicant.fill_name("Ivan")
@@ -37,14 +42,20 @@ class TestRegistration:
         applicant.fill_passport("AB123456")
         applicant.fill_address("Брест, улица Машерова 12")
 
-        time.sleep(1)
         applicant.click_next()
 
 
         # выбор услуги
+        self.wait.until(EC.element_to_be_clickable(
+            (By.XPATH, "//button[contains(text(), 'Регистрация брака')]")
+        ))
         ServiceForm(self.driver).select_marriage()
 
+
         # данные гражданина
+        self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "(//input[@maxlength='100'])[1]")
+        ))
         citizen = MarriageCitizenForm(self.driver)
         citizen.fill_surname("Ivanov")
         citizen.fill_name("Ivan")
@@ -54,10 +65,12 @@ class TestRegistration:
         citizen.fill_gender("M")
         citizen.fill_address("Брест, улица Машерова 12")
 
-        time.sleep(1)
         citizen.click_next()
 
         # данные брака
+        self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//input[@placeholder='дд/мм/гггг']")
+        ))
         marriage = MarriageForm(self.driver)
         marriage.fill_date("01072026")
         marriage.fill_new_surname("Ivanova")
@@ -67,12 +80,7 @@ class TestRegistration:
         marriage.fill_spouse_birthdate("20031993")
         marriage.fill_spouse_passport("AB87654")
 
-        time.sleep(1)
         marriage.click_finish()
-
-        # проверка результата
-        time.sleep(2)
-
 
 
     def test_birth_registration(self):
@@ -88,7 +96,6 @@ class TestRegistration:
         applicant.fill_passport("AB43243")
         applicant.fill_address("Минск, улица Машерова 12")
 
-        time.sleep(1)
         applicant.click_next()
 
         ServiceForm(self.driver).select_birth()
@@ -102,7 +109,6 @@ class TestRegistration:
         citizen.fill_gender("M")
         citizen.fill_address("Минск, улица Машерова 12")
 
-        time.sleep(1)
         citizen.click_next()
 
         birth = BirthForm(self.driver)
@@ -112,14 +118,7 @@ class TestRegistration:
         birth.fill_granny("granny")
         birth.fill_granddad("granddad")
 
-        time.sleep(1)
         birth.click_finish()
-
-
-        time.sleep(2)
-
-
-
 
 
 
