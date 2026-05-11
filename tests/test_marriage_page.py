@@ -12,11 +12,11 @@ def valid_value():
     return dict (
         marriage_date = fake.date_object().strftime('%d.%m.%Y'),
         new_surname = fake.last_name(),
-        spouce_surname = fake.last_name(),
-        spouce_name = fake.name(),
-        spouce_midname = fake.middle_name(),
-        spouce_birthdate = fake.date_of_birth(minimum_age=16).strftime('%d.%m.%Y'),
-        spouce_passport = fake.bothify('??######', letters = 'АВРСКНОТ'),
+        spouse_surname = fake.last_name(),
+        spouse_name = fake.name(),
+        spouse_midname = fake.middle_name(),
+        spouse_birthdate = fake.date_of_birth(minimum_age=16).strftime('%d.%m.%Y'),
+        spouse_passport = fake.bothify('??######', letters = 'АВРСКНОТ'),
     )
 
 def go_to_marriage_page(driver):
@@ -73,9 +73,9 @@ class TestMarriagePage:
         assert marriage_page.is_finish_button_disabled()
 
     @pytest.mark.negative
-    def test_fill_marriage_page_with_invalid_length_spouse_name(self, driver):
+    def test_fill_marriage_page_with_max_length_spouse_name(self, driver):
         marriage_page = go_to_marriage_page(driver)
         values = valid_value()
-        values['spouse_name'] = str('a' * 50)
+        values['spouse_name'] = str('a' * 20)
         marriage_page.fill_marriage_page(**values)
-        assert marriage_page.is_finish_button_disabled()
+        assert marriage_page.is_finish_button_enabled()

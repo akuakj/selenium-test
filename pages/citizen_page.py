@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -61,8 +63,8 @@ class CitizenPage:
 
     def fill_citizen_page(self, surname, name, midname, birthdate, passport, gender, address):
         self.fill_surname(surname)
-        self.fill_name(name),
-        self.fill_midname(midname),
+        self.fill_name(name)
+        self.fill_midname(midname)
         self.fill_birthdate(birthdate)
         self.fill_passport(passport)
         self.fill_gender(gender)

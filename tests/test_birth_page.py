@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from pages.home_page import HomePage
 from pages.applicant_page import ApplicantPage
@@ -32,7 +34,7 @@ def go_to_birth_page(driver):
     )
     applicant_page.click_next()
 
-    ServicePage(driver).select_marriage()
+    ServicePage(driver).select_birth()
 
     citizen_page = CitizenPage(driver)
     citizen_page.fill_citizen_page(
@@ -53,13 +55,14 @@ class TestBirthPage:
         birth_page = go_to_birth_page(driver)
         values = valid_value()
         birth_page.fill_birth_page(**values)
+        time.sleep(10)
         assert birth_page.is_finish_button_enabled()
 
     @pytest.mark.negative
     def test_fill_birth_page_invalid_symbols_father(self,driver):
         birth_page = go_to_birth_page(driver)
         values = valid_value()
-        values['mother'] = '34323223123123'
+        values['father'] = '34323223123123'
         birth_page.fill_birth_page(**values)
         assert birth_page.is_finish_button_disabled()
 

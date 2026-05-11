@@ -73,10 +73,10 @@ class TestCitizenPage:
         citizen_page.fill_citizen_page(**values)
         assert citizen_page.is_next_button_disabled()
 
-    def test_fill_citizen_page_with_space(self,driver):
+    def test_fill_citizen_page_with_space_passport(self,driver):
         citizen_page = go_to_citizen_page(driver)
         values = valid_values()
-        values['phone'] = '         '
+        values['passport'] = '         '
         citizen_page.fill_citizen_page(**values)
         assert citizen_page.is_next_button_disabled()
 
