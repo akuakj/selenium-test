@@ -18,27 +18,25 @@ class TestApplicantPage:
     def test_fill_applicant_page_with_all_valid_values(self, driver, applicant_page_ready_user):
         values = valid_values()
         applicant_page_ready_user.fill_applicant_page(**values)
-        assert applicant_page_ready_user.is_next_button_enabled()
+        applicant_page_ready_user.check_next_button_enabled()
 
     @pytest.mark.negative
     def test_fill_applicant_page_with_invalid_length_midname(self, driver, applicant_page_ready_user):
         values = valid_values()
         values['midname'] = 'test'
         applicant_page_ready_user.fill_applicant_page(**values)
-        assert applicant_page_ready_user.is_next_button_disabled()
+        applicant_page_ready_user.check_next_button_disabled()
 
-    @pytest.mark.xfail(reason="баг: пробелы проходят валидацию отчества")
+    @pytest.mark.xfail(reason="баг: пробел\ы проходят валидацию отчества")
     def test_fill_applicant_page_with_space(self, driver, applicant_page_ready_user):
         values = valid_values()
         values['midname'] = '      '
         applicant_page_ready_user.fill_applicant_page(**values)
-        assert applicant_page_ready_user.is_next_button_disabled()
+        applicant_page_ready_user.check_next_button_disabled()
 
-    @pytest.mark.positive
+    @pytest.mark.negative
     def test_fill_applicant_page_without_surname(self, driver, applicant_page_ready_user):
         values = valid_values()
         values['surname'] = ''
         applicant_page_ready_user.fill_applicant_page(**values)
-        assert applicant_page_ready_user.is_next_button_disabled()
-
-
+        applicant_page_ready_user.check_next_button_disabled()

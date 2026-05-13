@@ -67,12 +67,14 @@ class ApplicantPage:
         button = self.wait.until(EC.element_to_be_clickable(ApplicantLocators.NEXT_BUTTON))
         button.click()
 
-    def is_next_button_disabled(self):
+    def check_next_button_disabled(self):
         button = self.wait.until(EC.presence_of_element_located(ApplicantLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")
-        return disabled is not None and disabled != 'false'
+        assert disabled is not None and disabled != 'false',  "Кнопка Далее должна быть неактивна"
 
-    def is_next_button_enabled(self):
-        return not self.is_next_button_disabled()
+    def check_next_button_enabled(self):
+        button = self.wait.until(EC.presence_of_element_located(ApplicantLocators.NEXT_BUTTON))
+        disabled = button.get_attribute("disabled")
+        assert disabled is None or disabled == 'false', "Кнопка Далее должна быть активна"
 
 

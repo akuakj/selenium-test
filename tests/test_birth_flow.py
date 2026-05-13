@@ -1,6 +1,5 @@
 import pytest
 from faker import Faker
-from pages.status_page import StatusPage
 
 fake = Faker('ru_RU')
 
@@ -16,7 +15,6 @@ class TestBirthFlow:
             granny=' '.join([fake.first_name_female(), fake.last_name_female(), fake.middle_name_female()]),
             grandad=' '.join([fake.first_name_male(), fake.last_name_male(), fake.middle_name_male()])
         )
-        birth_page_ready.click_finish()
-        status_page = StatusPage(driver)
-        assert status_page.is_status_displayed()
-        assert status_page.is_success_message_displayed()
+        status_page = birth_page_ready.click_finish()
+        status_page.check_status_displayed()
+        status_page.check_success_message_displayed()

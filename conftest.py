@@ -8,6 +8,9 @@ from pages.service_page import ServicePage
 from pages.citizen_page import CitizenPage
 from pages.marriage_page import MarriagePage
 from pages.birth_page import BirthPage
+from pages.admin.admin_registration_page import AdminRegistrationPage
+from pages.admin.admin_applications_page import AdminApplicationsPage
+from utils import _fill_citizen_general
 
 fake = Faker('ru_RU')
 
@@ -46,23 +49,6 @@ def applicant_done(driver, applicant_page_ready_user):
 def service_page_ready(driver, applicant_done):
     return ServicePage(driver)
 
-def _fill_citizen_general(driver, service: str):
-    if service == 'marriage':
-        ServicePage(driver).select_marriage()
-    elif service == 'birth':
-        ServicePage(driver).select_birth()
-    citizen_page = CitizenPage(driver)
-    citizen_page.fill_citizen_page(
-        surname=fake.last_name(),
-        name=fake.first_name(),
-        midname=fake.middle_name(),
-        birthdate=fake.date_of_birth(minimum_age=16).strftime('%d.%m.%Y'),
-        passport=fake.bothify('??######', letters='АВРОНТСК'),
-        gender=fake.random_element(['муж', 'жен', 'м', 'ж']),
-        address=fake.address()
-    )
-    citizen_page.click_next()
-
 @pytest.fixture
 def citizen_page_ready(driver, applicant_done):
     ServicePage(driver).select_marriage()
@@ -84,5 +70,23 @@ def marriage_page_ready(driver, citizen_done_for_marriage):
 def birth_page_ready(driver, citizen_done_for_birth):
     return BirthPage(driver)
 
+@pytest.fixture
+def admin_page_ready(driver, home_page):
+    home_page.click_login_as_admin()
+    return AdminRegistrationPage(driver)
 
+@pytest.fixture
+def admin_registration_done(driver, admin_page_ready):
+    admin_page_ready.fill_admin_page(
+        surname=fake.last_name(),
+        name=fake.first_name(),
+        midname=fake.middle_name(),
+        phone=fake.numerify('#########'),
+        passport=fake.bothify('??#######', letters='АВРСКЕОНТ'),
+        birthdate = fake.date_of_birth(minimum_age=18).strftime('%d.%m.%Y')
+    )
+    admin_page_ready.click_next()
 
+@pytest.fixture
+def admin_applications_ready(driver, admin_registration_done):
+    return AdminApplicationsPage(driver)

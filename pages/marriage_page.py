@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.status_page import StatusPage
 
 class MarriageLocators:
     MARRIAGE_DATE = (By.XPATH, "(//input[@type='date'])[1]")
@@ -69,14 +70,17 @@ class MarriagePage:
         self.fill_spouse_passport(spouse_passport)
 
     def click_finish(self):
-        button = self.wait.until(EC.element_to_be_clickable(MarriageLocators.FINISH_BUTTON))
-        button.click()
+            button = self.wait.until(EC.element_to_be_clickable(MarriageLocators.FINISH_BUTTON))
+            button.click()
+            return StatusPage(self.driver)
 
 
-    def is_finish_button_disabled(self):
+    def check_finish_button_disabled(self):
         button = self.wait.until(EC.presence_of_element_located(MarriageLocators.FINISH_BUTTON))
         disabled = button.get_attribute("disabled")
-        return disabled is not None and disabled != 'false'
+        return disabled is not None and disabled != 'false', "Кнопка Далее должна быть активной"
 
-    def is_finish_button_enabled(self):
-        return not self.is_finish_button_disabled()
+    def check_finish_button_enabled(self):
+        button = self.wait.until(EC.presence_of_element_located(MarriageLocators.FINISH_BUTTON))
+        disabled = button.get_attribute("disabled")
+        return disabled is None or disabled == 'false', "Кнопка Далее должна быть активной"

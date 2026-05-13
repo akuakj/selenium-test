@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.status_page import StatusPage
 
 class BirthLocators:
     PLACE_OF_BIRTH = (By.XPATH, "(//input[@maxlength='50'])")
@@ -57,11 +58,14 @@ class BirthPage:
     def click_finish(self):
         button = self.wait.until(EC.element_to_be_clickable(BirthLocators.FINISH_BUTTON))
         button.click()
+        return StatusPage(self.driver)
 
-    def is_finish_button_disabled(self):
+    def check_finish_button_disabled(self):
         button = self.wait.until(EC.presence_of_element_located(BirthLocators.FINISH_BUTTON))
         disabled = button.get_attribute("disabled")
-        return disabled is not None and disabled != 'false'
+        assert disabled is not None and disabled != 'false', "Кнопка Далее должна быть неактивной"
 
-    def is_finish_button_enabled(self):
-        return not self.is_finish_button_disabled()
+    def check_finish_button_enabled(self):
+        button = self.wait.until(EC.presence_of_element_located(BirthLocators.FINISH_BUTTON))
+        disabled = button.get_attribute("disabled")
+        assert disabled is None or disabled == 'false', "Кнопка Далее должна быть активной"

@@ -11,10 +11,12 @@ class StatusPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 5)
 
-    def is_success_message_displayed(self):
+    def check_success_message_displayed(self):
         element = self.wait.until(EC.presence_of_element_located(StatusLocators.TEXT_THX_FOR_CONTACT))
-        return element is not None
+        assert element is not None, "Сообщение 'Спасибо за обращение' не отображается"
+        return self
 
-    def is_status_displayed(self):
+    def check_status_displayed(self):
         element = self.wait.until(EC.presence_of_element_located(StatusLocators.TEXT_STATUS))
-        return element is not None
+        assert element is not None, "Сообщение 'Статус заявки' не отображается"
+        return self
