@@ -1,11 +1,15 @@
 import pytest
 from faker import Faker
-
+import allure
+from allure_commons.types import Severity
 fake = Faker('ru_RU')
 
-
+@allure.feature("user flow регистрации рождения")
 class TestBirthFlow:
 
+    @allure.title("Заполнение всех форм валидными данными")
+    @allure.story("Позитивные сценарии")
+    @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
     def test_birth_registration_full_flow(self, driver, birth_page_ready):
         birth_page_ready.fill_birth_page(

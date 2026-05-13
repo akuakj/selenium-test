@@ -1,8 +1,7 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+import allure
 
 class CitizenLocators:
     CITIZEN_SURNAME = (By.XPATH, "(//input[@maxlength='100'])[1]")
@@ -61,6 +60,7 @@ class CitizenPage:
         field.send_keys(address)
         return self
 
+    @allure.step("Заполнить данные гражданина")
     def fill_citizen_page(self, surname, name, midname, birthdate, passport, gender, address):
         self.fill_surname(surname)
         self.fill_name(name)
@@ -71,15 +71,18 @@ class CitizenPage:
         self.fill_address(address)
         return self
 
+    @allure.step("Нажать Далее")
     def click_next(self):
         button = self.wait.until(EC.element_to_be_clickable(CitizenLocators.NEXT_BUTTON))
         button.click()
 
+    @allure.step("Проверить, что кнопка Далее неактивна")
     def check_next_button_disabled(self):
         button = self.wait.until(EC.presence_of_element_located(CitizenLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")
         assert disabled is not None and disabled != 'false', "Кнопка Далее должна быть неактивной"
 
+    @allure.step("Проверить, что кнопка Далее активна")
     def check_next_button_enabled(self):
         button = self.wait.until(EC.presence_of_element_located(CitizenLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")

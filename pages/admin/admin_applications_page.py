@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,11 +16,12 @@ class AdminApplicationsPage:
         self.wait = WebDriverWait(driver, 5)
         self.table = ApplicationsTable(driver)  # ← Page Element
 
-
+    @allure.step("Нажать Обновить")
     def click_refresh(self):
         button = self.wait.until(EC.element_to_be_clickable(AdminApplicationsLocators.UPDATE_BUTTON))
         button.click()
 
+    @allure.step("Нажать Закрыть")
     def click_close(self):
         button = self.wait.until(EC.element_to_be_clickable(AdminApplicationsLocators.CLOSE_BUTTON))
         button.click()

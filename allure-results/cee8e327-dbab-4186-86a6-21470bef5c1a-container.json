@@ -1,0 +1,1 @@
+{"uuid": "a6e92060-cd5a-4bfe-ad5e-582f532d1c04", "children": ["92916592-0868-4c52-ba28-8645b103520e"], "befores": [{"name": "admin_page_ready", "status": "passed", "steps": [{"name": "Нажать Войти как администратор", "status": "passed", "start": 1778668913032, "stop": 1778668913165}], "start": 1778668913031, "stop": 1778668913165}], "start": 1778668913031, "stop": 1778668913660}

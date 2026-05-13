@@ -1,6 +1,7 @@
 import pytest
 from faker import Faker
-
+import allure
+from allure_commons.types import Severity
 fake = Faker('ru_RU')
 
 def valid_values():
@@ -14,14 +15,21 @@ def valid_values():
         address = fake.address()
     )
 
+@allure.feature("Данные гражданина")
 class TestCitizenPage:
 
+    @allure.title("Заполнение всех полей валидными данными")
+    @allure.story("Позитивные сценарии")
+    @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
     def test_fill_citizen_page_with_all_valid_values(self, driver, citizen_page_ready):
         values = valid_values()
         citizen_page_ready.fill_citizen_page(**values)
         citizen_page_ready.check_next_button_enabled()
 
+    @allure.title("Пустое значение в поле фамилии")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_citizen_page_without_surname(self, driver, citizen_page_ready):
         values = valid_values()
@@ -29,6 +37,9 @@ class TestCitizenPage:
         citizen_page_ready.fill_citizen_page(**values)
         citizen_page_ready.check_next_button_disabled()
 
+    @allure.title("Будущее время в дате рождения")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_citizen_page_with_future_birthdate(self, driver, citizen_page_ready):
         values = valid_values()
@@ -36,6 +47,9 @@ class TestCitizenPage:
         citizen_page_ready.fill_citizen_page(**values)
         citizen_page_ready.check_next_button_disabled()
 
+    @allure.title("Пустое значение в поле пола")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_citizen_page_without_gender(self, driver, citizen_page_ready):
         values = valid_values()
@@ -43,6 +57,9 @@ class TestCitizenPage:
         citizen_page_ready.fill_citizen_page(**values)
         citizen_page_ready.check_next_button_disabled()
 
+    @allure.title("Невалидная длина значения паспорта")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_citizen_page_with_invalid_length_passport(self, driver, citizen_page_ready):
         values = valid_values()
@@ -50,6 +67,9 @@ class TestCitizenPage:
         citizen_page_ready.fill_citizen_page(**values)
         citizen_page_ready.check_next_button_disabled()
 
+    @allure.title("Пробелы вместо корректного значения в паспорте")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_citizen_page_with_space_passport(self,driver, citizen_page_ready):
         values = valid_values()
@@ -57,6 +77,9 @@ class TestCitizenPage:
         citizen_page_ready.fill_citizen_page(**values)
         citizen_page_ready.check_next_button_disabled()
 
+    @allure.title("Цифры в значении отчества")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_citizen_page_with_digits_midname(self, driver, citizen_page_ready):
         values = valid_values()

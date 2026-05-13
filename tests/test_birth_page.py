@@ -1,6 +1,7 @@
+import allure
 import pytest
 from faker import Faker
-
+from allure_commons.types import Severity
 fake = Faker('ru_RU')
 
 def valid_value():
@@ -12,14 +13,21 @@ def valid_value():
         grandad = ' '.join([fake.first_name_male(), fake.last_name_male(), fake.middle_name_male()])
     )
 
+@allure.feature("Данные рождения")
 class TestBirthPage:
 
+    @allure.title("Заполнение всех полей валидными данными")
+    @allure.story("Позитивные сценарии")
+    @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
     def test_fill_birth_page_all_valid_values(self, driver, birth_page_ready):
         values = valid_value()
         birth_page_ready.fill_birth_page(**values)
         birth_page_ready.check_finish_button_enabled()
 
+    @allure.title("Недопустимые символы в поле отца")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_birth_page_invalid_symbols_father(self,driver, birth_page_ready):
         values = valid_value()
@@ -27,6 +35,9 @@ class TestBirthPage:
         birth_page_ready.fill_birth_page(**values)
         birth_page_ready.check_finish_button_disabled()
 
+    @allure.title("Пустое значение в поле дедушки")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_birth_page_without_grandad(self, driver, birth_page_ready):
         values = valid_value()
@@ -34,6 +45,9 @@ class TestBirthPage:
         birth_page_ready.fill_birth_page(**values)
         birth_page_ready.check_finish_button_disabled()
 
+    @allure.title("Некорректная длина значения в поле отца")
+    @allure.story("Негативные сценарии")
+    @allure.severity(Severity.NORMAL)
     @pytest.mark.negative
     def test_fill_birth_page_with_invalid_length_father(self, driver, birth_page_ready):
         values = valid_value()

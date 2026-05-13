@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import allure
+from logger import get_logger
 
 class ApplicantLocators:
     SURNAME_USER = (By.XPATH, "//input[@placeholder='Введите фамилию (минимум 2 символа)']")
@@ -16,6 +18,7 @@ class ApplicantPage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 5)
+        self.logger = get_logger(__name__)
 
     def fill_surname(self, surname):
         field = self.wait.until(EC.presence_of_element_located(ApplicantLocators.SURNAME_USER))
@@ -53,28 +56,40 @@ class ApplicantPage:
         field.send_keys(address)
         return self
 
+    @allure.step("Заполнить данные заявителя")
     def fill_applicant_page(self, surname, name, midname, phone, passport, address):
+        self.logger.info("Заполнение формы заявителя")
         self.fill_surname(surname)
         self.fill_name(name)
         self.fill_midname(midname)
         self.fill_phone(phone)
         self.fill_passport(passport)
         self.fill_address(address)
+        self.logger.info("Форма заявителя заполнена")
         return self
 
-
+    @allure.step("Нажать Далее")
     def click_next(self):
         button = self.wait.until(EC.element_to_be_clickable(ApplicantLocators.NEXT_BUTTON))
         button.click()
+        self.logger.info("Нажата кнопка Далее")
 
+    @allure.step("Проверить, что кнопка Далее неактивна")
     def check_next_button_disabled(self):
+        self.logger.info("Проверка: кнопка Далее должна быть неактивна")
         button = self.wait.until(EC.presence_of_element_located(ApplicantLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")
         assert disabled is not None and disabled != 'false',  "Кнопка Далее должна быть неактивна"
+        self.logger.info("Проверка пройдена: кнопка Далее неактивна")
 
+
+    @allure.step("Проверить, что кнопка Далее активна")
     def check_next_button_enabled(self):
+        self.logger.info("Проверка: кнопка Далее должна быть активна")
         button = self.wait.until(EC.presence_of_element_located(ApplicantLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")
         assert disabled is None or disabled == 'false', "Кнопка Далее должна быть активна"
+        self.logger.info("Проверка пройдена: кнопка Далее активна")
+
 
 

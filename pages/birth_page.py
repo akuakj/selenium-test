@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -47,6 +48,7 @@ class BirthPage:
         field.send_keys(granddad)
         return self
 
+    @allure.step("Заполнить данные рождения")
     def fill_birth_page(self, place_of_birth, mother, father, granny, grandad):
         self.fill_place_of_birth(place_of_birth)
         self.fill_mother(mother)
@@ -55,16 +57,19 @@ class BirthPage:
         self.fill_granddad(grandad)
         return self
 
+    @allure.step("Нажмать Завершить")
     def click_finish(self):
         button = self.wait.until(EC.element_to_be_clickable(BirthLocators.FINISH_BUTTON))
         button.click()
         return StatusPage(self.driver)
 
+    @allure.step("Проверить, что кнопка Завершить неактивна")
     def check_finish_button_disabled(self):
         button = self.wait.until(EC.presence_of_element_located(BirthLocators.FINISH_BUTTON))
         disabled = button.get_attribute("disabled")
         assert disabled is not None and disabled != 'false', "Кнопка Далее должна быть неактивной"
 
+    @allure.step("Проверить, что кнопка Завершить активна")
     def check_finish_button_enabled(self):
         button = self.wait.until(EC.presence_of_element_located(BirthLocators.FINISH_BUTTON))
         disabled = button.get_attribute("disabled")

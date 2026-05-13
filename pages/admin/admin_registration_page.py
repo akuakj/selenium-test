@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -53,6 +54,7 @@ class AdminRegistrationPage:
         field.send_keys(birthdate)
         return self
 
+    @allure.step("Заполнить данные администратора")
     def fill_admin_page(self, surname, name, midname, phone, passport, birthdate):
         self.fill_surname(surname)
         self.fill_name(name)
@@ -62,19 +64,22 @@ class AdminRegistrationPage:
         self.fill_birthday(birthdate)
         return self
 
+    @allure.step("Нажать Далее")
     def click_next(self):
         button = self.wait.until(EC.element_to_be_clickable(AdminRegistrationLocators.NEXT_BUTTON))
         button.click()
 
+    @allure.step("Проверить, что кнопка Далее неактивна")
     def check_next_button_disabled(self):
         button = self.wait.until(EC.presence_of_element_located(AdminRegistrationLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")
-        return disabled is not None and disabled != 'false', "Кнопка Далее должна быть неактивна"
+        assert disabled is not None and disabled != 'false', "Кнопка Далее должна быть неактивна"
 
+    @allure.step("Проверить, что кнопка Далее активна")
     def check_next_button_enabled(self):
         button = self.wait.until(EC.presence_of_element_located(AdminRegistrationLocators.NEXT_BUTTON))
         disabled = button.get_attribute("disabled")
-        return disabled is None or disabled == 'false', "Кнопка Далее должна быть активна"
+        assert disabled is None or disabled == 'false', "Кнопка Далее должна быть активна"
 
 
 

@@ -1,0 +1,9 @@
+2026-05-13 13:40:42,116 - tests.test_marriage_flow - INFO - Открытие главной страницы
+2026-05-13 13:40:43,122 - tests.test_marriage_flow - INFO - Заполнение формы заявителя
+2026-05-13 13:40:43,122 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:43,663 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:43,715 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:43,716 - tests.test_marriage_flow - INFO - Выбор услуги: Регистрация брака
+2026-05-13 13:40:43,768 - tests.test_marriage_flow - INFO - Заполнение формы гражданина
+2026-05-13 13:40:44,303 - tests.test_marriage_flow - INFO - Заполнение формы брака
+2026-05-13 13:40:44,781 - tests.test_marriage_flow - INFO - Проверка статуса заявки

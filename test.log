@@ -1,0 +1,96 @@
+2026-05-13 13:30:23,802 - tests.test_marriage_flow - INFO - Открытие главной страницы
+2026-05-13 13:30:24,787 - tests.test_marriage_flow - INFO - Заполнение формы заявителя
+2026-05-13 13:30:24,787 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:30:25,412 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:30:25,464 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:30:25,464 - tests.test_marriage_flow - INFO - Выбор услуги: Регистрация брака
+2026-05-13 13:30:25,521 - tests.test_marriage_flow - INFO - Заполнение формы гражданина
+2026-05-13 13:30:26,041 - tests.test_marriage_flow - INFO - Заполнение формы брака
+2026-05-13 13:30:26,511 - tests.test_marriage_flow - INFO - Проверка статуса заявки
+2026-05-13 13:39:21,678 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:22,240 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:22,240 - pages.applicant_page - INFO - Проверка: кнопка Далее должна быть активна
+2026-05-13 13:39:22,252 - pages.applicant_page - INFO - Проверка пройдена: кнопка Далее активна
+2026-05-13 13:39:25,796 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:26,355 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:26,355 - pages.applicant_page - INFO - Проверка: кнопка Далее должна быть неактивна
+2026-05-13 13:39:26,368 - pages.applicant_page - INFO - Проверка пройдена: кнопка Далее неактивна
+2026-05-13 13:39:30,178 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:30,731 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:30,731 - pages.applicant_page - INFO - Проверка: кнопка Далее должна быть неактивна
+2026-05-13 13:39:34,614 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:35,140 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:35,140 - pages.applicant_page - INFO - Проверка: кнопка Далее должна быть неактивна
+2026-05-13 13:39:35,158 - pages.applicant_page - INFO - Проверка пройдена: кнопка Далее неактивна
+2026-05-13 13:39:38,763 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:39,307 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:39,361 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:39:44,571 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:45,132 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:45,185 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:39:51,661 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:52,272 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:52,326 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:39:56,967 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:39:57,516 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:39:57,570 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:02,899 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:03,445 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:03,497 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:08,351 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:08,909 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:08,963 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:13,218 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:13,769 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:13,826 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:18,678 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:19,243 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:19,294 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:23,570 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:24,111 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:24,164 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:28,390 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:28,983 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:29,032 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:33,153 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:33,703 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:33,759 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:38,163 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:38,734 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:38,790 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:42,116 - tests.test_marriage_flow - INFO - Открытие главной страницы
+2026-05-13 13:40:43,122 - tests.test_marriage_flow - INFO - Заполнение формы заявителя
+2026-05-13 13:40:43,122 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:43,663 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:43,715 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:43,716 - tests.test_marriage_flow - INFO - Выбор услуги: Регистрация брака
+2026-05-13 13:40:43,768 - tests.test_marriage_flow - INFO - Заполнение формы гражданина
+2026-05-13 13:40:44,303 - tests.test_marriage_flow - INFO - Заполнение формы брака
+2026-05-13 13:40:44,781 - tests.test_marriage_flow - INFO - Проверка статуса заявки
+2026-05-13 13:40:48,942 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:49,496 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:49,550 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:40:55,372 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:40:55,921 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:40:55,975 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:41:01,444 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:41:02,105 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:41:02,165 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:41:07,341 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:41:07,956 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:41:08,014 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:41:13,032 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:41:13,648 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:41:13,709 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 13:41:17,953 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 13:41:18,635 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 13:41:18,701 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 15:52:47,513 - tests.test_marriage_flow - INFO - Открытие главной страницы
+2026-05-13 15:52:50,649 - tests.test_marriage_flow - INFO - Заполнение формы заявителя
+2026-05-13 15:52:50,650 - pages.applicant_page - INFO - Заполнение формы заявителя
+2026-05-13 15:52:51,626 - pages.applicant_page - INFO - Форма заявителя заполнена
+2026-05-13 15:52:51,742 - pages.applicant_page - INFO - Нажата кнопка Далее
+2026-05-13 15:52:51,743 - tests.test_marriage_flow - INFO - Выбор услуги: Регистрация брака
+2026-05-13 15:52:51,848 - tests.test_marriage_flow - INFO - Заполнение формы гражданина
+2026-05-13 15:52:53,045 - tests.test_marriage_flow - INFO - Заполнение формы брака
+2026-05-13 15:52:53,906 - tests.test_marriage_flow - INFO - Проверка статуса заявки
