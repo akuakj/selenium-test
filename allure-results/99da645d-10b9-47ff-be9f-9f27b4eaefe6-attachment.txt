@@ -1,0 +1,3 @@
+[32mINFO    [0m api.endpoints.admin_api:admin_api.py:15 POST https://user:senlatest@regoffice.senla.eu/sendAdminRequest | payload: {'dateofbirth': '03.11.2004', 'personalFirstName': 'Алевтина', 'personalLastName': 'Фомичева', 'personalMiddleName': 'Ильинична', 'personalNumberOfPassport': 'РА221361', 'personalPhoneNumber': '31166805196'}
+[32mINFO    [0m api.endpoints.admin_api:admin_api.py:17 Response 200
+[32mINFO    [0m tests_api.test_admin_api:test_admin_api.py:21 Response body: {'data': {'staffid': 35143}, 'requestId': '5ae70a93-d411-48ba-b432-0ede190137ee'}

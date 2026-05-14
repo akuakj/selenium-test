@@ -1,0 +1,3 @@
+2026-05-14 15:11:05,498 - api.endpoints.admin_api - INFO - POST https://user:senlatest@regoffice.senla.eu/sendAdminRequest | payload: {'personalLastName': 'Лазарев', 'personalFirstName': 'Акулина', 'personalMiddleName': 'Игоревна', 'personalPhoneNumber': '45658410294', 'personalNumberOfPassport': 'КА331810', 'dateofbirth': '15.03.1937'}
+2026-05-14 15:11:05,768 - api.endpoints.admin_api - INFO - Response 500
+2026-05-14 15:11:05,769 - tests_api.test_admin_api - INFO - Response body: {'code': 'error', 'message': 'SequelizeDatabaseError'}

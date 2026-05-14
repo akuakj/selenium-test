@@ -1,0 +1,50 @@
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.address`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.address` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.automotive`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.automotive` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.bank`.
+[35mDEBUG   [0m faker.factory:factory.py:86 Specified locale `en_US` is not available for provider `faker.providers.bank`. Locale reset to `en_GB` for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.barcode`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.barcode` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.color`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.color` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.company`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.company` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.credit_card`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.credit_card` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.currency`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.currency` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.date_time`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.date_time` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.doi` does not feature localization. Specified locale `en_US` is not used for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.emoji` does not feature localization. Specified locale `en_US` is not used for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.file` does not feature localization. Specified locale `en_US` is not used for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.geo`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.geo` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.internet`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.internet` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.isbn`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.isbn` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.job`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.job` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.lorem`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.lorem` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.misc`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.misc` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.passport`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.passport` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.person`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.person` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.phone_number`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.phone_number` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.profile` does not feature localization. Specified locale `en_US` is not used for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.python` does not feature localization. Specified locale `en_US` is not used for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.sbn` does not feature localization. Specified locale `en_US` is not used for this provider.
+[35mDEBUG   [0m faker.factory:factory.py:76 Looking for locale `en_US` in provider `faker.providers.ssn`.
+[35mDEBUG   [0m faker.factory:factory.py:95 Provider `faker.providers.ssn` has been localized to `en_US`.
+[35mDEBUG   [0m faker.factory:factory.py:106 Provider `faker.providers.user_agent` does not feature localization. Specified locale `en_US` is not used for this provider.
+[32mINFO    [0m api.endpoints.user_api:user_api.py:15 POST https://user:senlatest@regoffice.senla.eu/sendUserRequest | payload: {'mode': 'wedding', 'personalLastName': 'Потапова', 'personalFirstName': 'Арсений', 'personalMiddleName': 'Владиславовна', 'personalPhoneNumber': '53871683769', 'personalNumberOfPassport': 'КА156868', 'personalAddress': 'к. Киржач, наб. Раздольная, д. 74 к. 3, 456906', 'citizenLastName': 'Гусев', 'citizenFirstName': 'Климент', 'citizenMiddleName': 'Ефимович', 'citizenBirthDate': '1939-11-07', 'citizenNumberOfPassport': 'АВ721255', 'citizenGender': 'м', 'citizenAddress': 'клх Новосибирск, ш. Путевое, д. 8/6 к. 19, 962327', 'dateOfMarriage': '2002-12-26', 'newLastName': 'Алексеев', 'anotherPersonLastName': 'Зимина', 'anotherPersonFirstName': 'Мечислав', 'anotherPersonMiddleName': 'Ермилович', 'birth_of_anotoherPerson': '1960-09-22', 'anotherPersonPassport': 'ТР328716'}
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): regoffice.senla.eu:443
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:544 https://regoffice.senla.eu:443 "POST /sendUserRequest HTTP/1.1" 200 150
+[32mINFO    [0m api.endpoints.user_api:user_api.py:17 Response 200
+[32mINFO    [0m tests_api.test_user_api:test_user_api.py:20 Response body: {'data': {'applicantid': 72530, 'citizenid': 65394, 'applicationid': 63846, 'merrigecertificateid': 28605}, 'requestId': '908dd005-9029-43e5-914e-d2214e00a93a'}
