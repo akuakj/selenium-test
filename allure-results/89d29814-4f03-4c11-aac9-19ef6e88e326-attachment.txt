@@ -1,0 +1,4 @@
+2026-05-14 23:07:55,019 - tests_api.test_admin_api - INFO - Payload: {'personalLastName': 'Абрамова', 'personalFirstName': 'Мокей', 'personalMiddleName': 'Феликсович', 'personalPhoneNumber': '12548652', 'personalNumberOfPassport': 'ТС99682', 'dateofbirth': '2002-07-29'}
+2026-05-14 23:07:55,020 - api.endpoints.admin_api - INFO - POST https://user:senlatest@regoffice.senla.eu/sendAdminRequest | payload: {'personalLastName': 'Абрамова', 'personalFirstName': 'Мокей', 'personalMiddleName': 'Феликсович', 'personalPhoneNumber': '12548652', 'personalNumberOfPassport': 'ТС99682', 'dateofbirth': '2002-07-29'}
+2026-05-14 23:07:55,531 - api.endpoints.admin_api - INFO - Response 200
+2026-05-14 23:07:55,532 - tests_api.test_admin_api - INFO - Response body: {'data': {'staffid': 35165}, 'requestId': '492100fd-30eb-4af7-902b-3b218b436dd2'}

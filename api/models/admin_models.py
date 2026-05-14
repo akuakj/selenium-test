@@ -2,37 +2,41 @@ from pydantic import BaseModel
 from typing import Optional
 
 class AdminRequest(BaseModel):
-    personalLastName: Optional[str] = None
-    personalFirstName: Optional[str] = None
-    personalMiddleName: Optional[str] = None
-    personalPhoneNumber: Optional[str] = None
-    personalNumberOfPassport: Optional[str] = None
-    dateofbirth: Optional[str] = None
+    personalLastName: Optional[str]
+    personalFirstName: Optional[str]
+    personalMiddleName: Optional[str]
+    personalPhoneNumber: Optional[str]
+    personalNumberOfPassport: Optional[str]
+    dateofbirth: Optional[str]
 
 class AdminResponseData(BaseModel):
-    staffid: int
+    staffid: Optional[int]
 
 class AdminResponse(BaseModel):
     data: AdminResponseData
-    requestId: str
-
-class ProcessRequest(BaseModel):
-    applId: int
-    staffid: int
-    action: str
-
-
-class ProcessResponse(BaseModel):
-    applicantid: int
-    applicationid: int
-    citizenid: int
-    dateofapplication: str
-    kindofapplication: str
-    statusofapplication: int
-    staffid: int
-
+    requestId: Optional[str]
 
 class AdminBadRequest(BaseModel):
-    code: str
-    message: str
+    code: Optional[str] = None
+    message: Optional[str] = None
+
+class ProcessRequest(BaseModel):
+    applId: Optional[int]
+    staffid: Optional[int]
+    action: Optional[str]
+
+class ProcessResponseData(BaseModel):
+    applicantid: Optional[int]
+    applicationid: Optional[int]
+    citizenid: Optional[int]
+    dateofapplication: Optional[str]
+    kindofapplication: Optional[str]
+    statusofapplication: Optional[str]
+    staffid: Optional[int]
+    channel: Optional[str] = None
+    image: Optional[str] = None
+
+class ProcessResponse(BaseModel):
+    data: ProcessResponseData
+    requestId: Optional[str]
 

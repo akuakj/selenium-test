@@ -1,6 +1,6 @@
 from requests import Response
-from api.client import ApiClient
-from api.models.user_models import UserRequest
+from API.client import ApiClient
+from API.models.user_models import UserRequest
 from logger import get_logger
 
 

@@ -1,5 +1,5 @@
 from requests import Response
-from api.client import ApiClient
+from API.client import ApiClient
 from logger import get_logger
 
 logger = get_logger(__name__)

@@ -1,8 +1,8 @@
 from faker import Faker
 fake = Faker('ru_RU')
-from pages.service_page import ServicePage
-from pages.citizen_page import CitizenPage
-from pages.enums import Gender
+from UI.pages.service_page import ServicePage
+from UI.pages.citizen_page import CitizenPage
+from enums import Gender
 
 def _fill_citizen_general(driver, service: str):
     if service == 'marriage':

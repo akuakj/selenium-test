@@ -2,14 +2,14 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from faker import Faker
-from pages.home_page import HomePage
-from pages.applicant_page import ApplicantPage
-from pages.service_page import ServicePage
-from pages.citizen_page import CitizenPage
-from pages.marriage_page import MarriagePage
-from pages.birth_page import BirthPage
-from pages.admin.admin_registration_page import AdminRegistrationPage
-from pages.admin.admin_applications_page import AdminApplicationsPage
+from UI.pages.home_page import HomePage
+from UI.pages.applicant_page import ApplicantPage
+from UI.pages.service_page import ServicePage
+from UI.pages.citizen_page import CitizenPage
+from UI.pages.marriage_page import MarriagePage
+from UI.pages.birth_page import BirthPage
+from UI.pages.admin.admin_registration_page import AdminRegistrationPage
+from UI.pages.admin.admin_applications_page import AdminApplicationsPage
 from utils import _fill_citizen_general
 
 fake = Faker('ru_RU')
@@ -90,3 +90,5 @@ def admin_registration_done(driver, admin_page_ready):
 @pytest.fixture
 def admin_applications_ready(driver, admin_registration_done):
     return AdminApplicationsPage(driver)
+
+
