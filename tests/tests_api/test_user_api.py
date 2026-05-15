@@ -3,7 +3,7 @@ import pytest
 from allure_commons.types import Severity
 from API.models.user_models import UserResponse, UserBadRequest
 from logger import get_logger
-from tests.tests_api.data.user_data import get_valid_marriage_payload, get_valid_birth_payload
+from API.data.user_data import get_valid_marriage_payload, get_valid_birth_payload
 
 logger = get_logger(__name__)
 

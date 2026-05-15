@@ -1,0 +1,2 @@
+2026-05-15 12:17:34 - API.endpoints.appilication_api - INFO - get_application_by_id:21 - GET https://user:senlatest@regoffice.senla.eu/getApplStatus/-1
+2026-05-15 12:17:34 - API.endpoints.appilication_api - INFO - get_application_by_id:23 - Response 200

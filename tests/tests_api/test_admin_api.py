@@ -3,8 +3,8 @@ import pytest
 from logger import get_logger
 from allure_commons.types import Severity
 from API.models.admin_models import AdminResponse, ProcessResponse, AdminBadRequest
-from tests.tests_api.data.admin_data import get_valid_admin_payload, get_process_request_payload
-from tests.tests_api.data.user_data import get_valid_marriage_payload
+from API.data.admin_data import get_valid_admin_payload, get_process_request_payload
+from API.data.user_data import get_valid_marriage_payload
 
 logger = get_logger(__name__)
 
