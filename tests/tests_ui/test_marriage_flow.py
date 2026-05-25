@@ -7,7 +7,7 @@ from UI.pages.applicant_page import ApplicantPage
 from UI.pages.service_page import ServicePage
 from UI.pages.citizen_page import CitizenPage
 from UI.pages.marriage_page import MarriagePage
-from logger import get_logger
+from utils.logger import get_logger
 
 fake = Faker('ru_RU')
 

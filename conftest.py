@@ -10,7 +10,9 @@ from UI.pages.marriage_page import MarriagePage
 from UI.pages.birth_page import BirthPage
 from UI.pages.admin.admin_registration_page import AdminRegistrationPage
 from UI.pages.admin.admin_applications_page import AdminApplicationsPage
-from utils import _fill_citizen_general
+from utils.fill_citizen_page import fill_citizen_general
+from database.client import client
+from database.queries import DBQueries
 
 fake = Faker('ru_RU')
 
@@ -56,11 +58,11 @@ def citizen_page_ready(driver, applicant_done):
 
 @pytest.fixture
 def citizen_done_for_marriage(driver, applicant_done):
-    _fill_citizen_general(driver, 'marriage')
+    fill_citizen_general(driver, 'marriage')
 
 @pytest.fixture
 def citizen_done_for_birth(driver, applicant_done):
-    _fill_citizen_general(driver, 'birth')
+    fill_citizen_general(driver, 'birth')
 
 @pytest.fixture
 def marriage_page_ready(driver, citizen_done_for_marriage):
@@ -90,5 +92,6 @@ def admin_registration_done(driver, admin_page_ready):
 @pytest.fixture
 def admin_applications_ready(driver, admin_registration_done):
     return AdminApplicationsPage(driver)
+
 
 

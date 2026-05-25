@@ -1,7 +1,7 @@
 from requests import Response
 from API.client import ApiClient
 from API.models.admin_models import AdminRequest, ProcessRequest
-from logger import get_logger
+from utils.logger import get_logger
 
 logger = get_logger(__name__)
 

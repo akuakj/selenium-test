@@ -1,3 +1,0 @@
-2026-05-15 12:16:13 - API.endpoints.appilication_api - INFO - get_all_applications:14 - GET https://user:senlatest@regoffice.senla.eu/getApplications
-2026-05-15 12:16:14 - API.endpoints.appilication_api - INFO - get_all_applications:16 - Response 200
-2026-05-15 12:16:14 - tests.tests_api.test_get_applications - INFO - test_get_all_applications:21 - Response status: 200

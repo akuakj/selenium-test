@@ -1,3 +1,0 @@
-[32mINFO    [0m api.endpoints.admin_api:admin_api.py:15 POST https://user:senlatest@regoffice.senla.eu/sendAdminRequest | payload: {'personalLastName': None, 'personalFirstName': 'Бронислав', 'personalMiddleName': 'Антонович', 'personalPhoneNumber': '31074940', 'personalNumberOfPassport': 'ВТ12841', 'dateofbirth': '1929-05-17'}
-[32mINFO    [0m api.endpoints.admin_api:admin_api.py:17 Response 400
-[32mINFO    [0m tests_api.test_admin_api:test_admin_api.py:55 Response body: {"code":"request error","message":"Property personalLastName is null!"}

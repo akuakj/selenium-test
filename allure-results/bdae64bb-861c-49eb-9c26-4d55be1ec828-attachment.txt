@@ -1,9 +1,0 @@
-[32mINFO    [0m tests.test_marriage_flow:test_marriage_flow.py:27 Открытие главной страницы
-[32mINFO    [0m tests.test_marriage_flow:test_marriage_flow.py:33 Заполнение формы заявителя
-[32mINFO    [0m pages.applicant_page:applicant_page.py:61 Заполнение формы заявителя
-[32mINFO    [0m pages.applicant_page:applicant_page.py:68 Форма заявителя заполнена
-[32mINFO    [0m pages.applicant_page:applicant_page.py:75 Нажата кнопка Далее
-[32mINFO    [0m tests.test_marriage_flow:test_marriage_flow.py:46 Выбор услуги: Регистрация брака
-[32mINFO    [0m tests.test_marriage_flow:test_marriage_flow.py:50 Заполнение формы гражданина
-[32mINFO    [0m tests.test_marriage_flow:test_marriage_flow.py:64 Заполнение формы брака
-[32mINFO    [0m tests.test_marriage_flow:test_marriage_flow.py:78 Проверка статуса заявки

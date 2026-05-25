@@ -10,7 +10,6 @@ class UserRequest(BaseModel):
     personalPhoneNumber: Optional[str] = None
     personalNumberOfPassport: Optional[str] = None
     personalAddress: Optional[str] = None
-
     citizenLastName: Optional[str] = None
     citizenFirstName: Optional[str] = None
     citizenMiddleName: Optional[str] = None
@@ -18,7 +17,6 @@ class UserRequest(BaseModel):
     citizenNumberOfPassport: Optional[str] = None
     citizenGender: Optional[str] = None
     citizenAddress: Optional[str] = None
-
     dateOfMarriage: Optional[str] = None
     newLastName: Optional[str] = None
     anotherPersonLastName: Optional[str] = None
@@ -26,13 +24,11 @@ class UserRequest(BaseModel):
     anotherPersonMiddleName: Optional[str] = None
     birth_of_anotoherPerson: Optional[str] = None
     anotherPersonPassport: Optional[str] = None
-
     birth_place: Optional[str] = None
     birth_mother: Optional[str] = None
     birth_father: Optional[str] = None
     birth_grandpa: Optional[str] = None
     birth_grandma: Optional[str] = None
-
     death_dateOfDeath: Optional[str] = None
     death_placeOfDeath: Optional[str] = None
 

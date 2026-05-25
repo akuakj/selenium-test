@@ -1,6 +1,6 @@
 import pytest
 from faker import Faker
-from enums import ApplicationStatus
+from utils.enums import ApplicationStatus
 import allure
 from allure_commons.types import Severity
 

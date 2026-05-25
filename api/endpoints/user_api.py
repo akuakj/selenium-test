@@ -1,9 +1,9 @@
 from requests import Response
 from API.client import ApiClient
 from API.models.user_models import UserRequest
-from logger import get_logger
+from utils.logger import get_logger
 
-
+# вынести в один клиент
 logger = get_logger(__name__)
 
 class UserAPI:

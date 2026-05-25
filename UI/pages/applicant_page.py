@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
-from logger import get_logger
+from utils.logger import get_logger
 
 class ApplicantLocators:
     SURNAME_USER = (By.XPATH, "//input[@placeholder='Введите фамилию (минимум 2 символа)']")

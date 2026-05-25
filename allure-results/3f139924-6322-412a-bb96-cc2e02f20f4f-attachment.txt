@@ -1,4 +1,0 @@
-[32mINFO    [0m pages.applicant_page:applicant_page.py:61 Заполнение формы заявителя
-[32mINFO    [0m pages.applicant_page:applicant_page.py:68 Форма заявителя заполнена
-[32mINFO    [0m pages.applicant_page:applicant_page.py:79 Проверка: кнопка Далее должна быть неактивна
-[32mINFO    [0m pages.applicant_page:applicant_page.py:83 Проверка пройдена: кнопка Далее неактивна

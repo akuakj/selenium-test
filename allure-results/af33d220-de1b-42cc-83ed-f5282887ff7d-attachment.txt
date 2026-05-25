@@ -1,3 +1,0 @@
-[32mINFO    [0m api.endpoints.admin_api:admin_api.py:15 POST https://user:senlatest@regoffice.senla.eu/sendAdminRequest | payload: {'personalLastName': '', 'personalFirstName': 'Геннадий', 'personalMiddleName': 'Фадеевич', 'personalPhoneNumber': '44535609457', 'personalNumberOfPassport': 'ВА067471', 'dateofbirth': '21.02.1980'}
-[32mINFO    [0m api.endpoints.admin_api:admin_api.py:17 Response 500
-[32mINFO    [0m tests_api.test_admin_api:test_admin_api.py:47 Response body: {"code":"error","message":"SequelizeDatabaseError"}

@@ -2,7 +2,7 @@ import allure
 import pytest
 from allure_commons.types import Severity
 from API.models.user_models import UserResponse, UserBadRequest
-from logger import get_logger
+from utils.logger import get_logger
 from API.data.user_data import get_valid_marriage_payload, get_valid_birth_payload
 
 logger = get_logger(__name__)
