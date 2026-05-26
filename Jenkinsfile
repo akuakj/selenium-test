@@ -12,16 +12,18 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                bat 'pip install pytest allure-pytest faker playwright pytest-xdist'
-                bat 'pip install -r requirements.txt'
-                bat 'playwright install chromium'
+                bat 'C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe --version'
+                bat 'C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pip install --upgrade pip'
+                bat 'C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pip install pytest allure-pytest faker playwright pytest-xdist'
+                bat 'C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pip install -r requirements.txt'
+                bat 'C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m playwright install chromium'
             }
         }
 
         stage('Run tests') {
             steps {
                 bat '''
-                    pytest tests/ ^
+                    C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pytest tests/ ^
                         --alluredir=allure-results ^
                         -v ^
                         --tb=short ^
