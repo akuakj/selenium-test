@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         EMAIL_RECIPIENT = 'your@email.com'
+        PYTHONPATH = "${env.WORKSPACE}"
     }
 
     stages {
@@ -23,6 +24,7 @@ pipeline {
         stage('Run tests') {
             steps {
                 bat '''
+                    set PYTHONPATH=%PYTHONPATH%;%CD%
                     C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pytest tests/ ^
                         --alluredir=allure-results ^
                         -v ^
