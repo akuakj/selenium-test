@@ -5,8 +5,7 @@ from API.endpoints.user_api import UserAPI
 from API.endpoints.appilication_api import ApplicationAPI
 from API.endpoints.admin_api import AdminAPI
 from API.models.user_models import UserRequest
-from database.client import client
-from database.queries import DBQueries
+from database.queries import db_queries
 
 fake = Faker('ru_RU')
 
@@ -60,4 +59,4 @@ def created_application_id(user_api):
 
 @pytest.fixture(scope="session")
 def db():
-    return DBQueries(client)
+    return db_queries

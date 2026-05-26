@@ -2,6 +2,7 @@ from sqlalchemy import select
 from database.client import DBClient
 from database.models import ApplicantsModel, ApplicationsModel, StaffModel, CitizensModel, BirthCertificatesModel
 from utils.logger import get_logger
+from database.client import client as cl
 
 logger = get_logger(__name__)
 
@@ -51,3 +52,6 @@ class DBQueries:
         with self.client.session_scope() as session:
             stmt = select(BirthCertificatesModel).where(BirthCertificatesModel.citizenid == citizen_id)
             return session.execute(stmt).scalar_one_or_none()
+
+
+db_queries = DBQueries(cl)
