@@ -24,10 +24,10 @@ class TestGetApplications:
             assert response.status_code == 200, f"Ожидался 200, фактический {response.status_code}"
 
         with allure.step("Проверить структуру ответа с пайдентик моделью"):
-            parser = GetApplicationsResponse(**response.json())
+            application_body_response = GetApplicationsResponse(**response.json())
 
         with allure.step("Проверить что присутствуют атрибуты applicationid и kindofapplication"):
-            assert hasattr(parser.data[0], "applicationid") and hasattr(parser.data[0], "kindofapplication")
+            assert hasattr(application_body_response.data[0], "applicationid") and hasattr(application_body_response.data[0], "kindofapplication")
 
     @allure.title("GET /getApplications - получить указанное количество заявок")
     @allure.story("Получение заданного кол-ва заявок")
@@ -49,7 +49,7 @@ class TestGetApplications:
 
         with allure.step("Отправить запрос с параметрами"):
             url = application_api.client.url(f'/getApplications')
-            response =application_api.client.session.get(url, params=params)
+            response = application_api.client.session.get(url, params=params)
             logger.info(f"Фактический URL: {response.request.url}")
 
         with allure.step("Проверить статус код 200"):
@@ -57,12 +57,12 @@ class TestGetApplications:
             logger.info(f"Response status code: {response.status_code}")
 
         with allure.step("сравнить ответ с пайдентик моделью"):
-            parser = GetApplicationsResponse(**response.json())
+            application_body_response = GetApplicationsResponse(**response.json())
 
         with allure.step("Проверить что присутствуют атрибуты applicationid и kindofapplication"):
-            assert hasattr(parser.data[0], "applicationid") and hasattr(parser.data[0], "kindofapplication")
+            assert hasattr(application_body_response.data[0], "applicationid") and hasattr(application_body_response.data[0], "kindofapplication")
 
         with allure.step("Проверить что количество записей совпадает с заданным given_quantity"):
-            assert given_quantity == len(parser.data), f"Заданное количество записей {given_quantity} не совпадает с фактическим количеством {len(parser.data)}"
+            assert given_quantity == len(application_body_response.data), f"Заданное количество записей {given_quantity} не совпадает с фактическим количеством {len(application_body_response.data)}"
 
 

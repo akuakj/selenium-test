@@ -8,11 +8,9 @@ from UI.pages.service_page import ServicePage
 from UI.pages.citizen_page import CitizenPage
 from UI.pages.marriage_page import MarriagePage
 from UI.pages.birth_page import BirthPage
-from UI.pages.admin.admin_registration_page import AdminRegistrationPage
-from UI.pages.admin.admin_applications_page import AdminApplicationsPage
+from UI.pages.admin_registration_page import AdminRegistrationPage
+from UI.pages.admin_applications_page import AdminApplicationsPage
 from utils.fill_citizen_page import fill_citizen_general
-from database.client import client
-from database.queries import DBQueries
 
 fake = Faker('ru_RU')
 

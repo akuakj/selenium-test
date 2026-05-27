@@ -2,7 +2,7 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from UI.pages.admin.applications_table import ApplicationsTable
+from UI.pages.applications_table import ApplicationsTable
 
 
 class AdminApplicationsLocators:

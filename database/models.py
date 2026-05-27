@@ -1,4 +1,4 @@
-from sqlalchemy import text, BigInteger, DateTime, Date, Table, Column, Integer, String, MetaData, ForeignKey
+from sqlalchemy import text, BigInteger, DateTime, Date, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from datetime import datetime, date
 from typing import Annotated

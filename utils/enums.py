@@ -5,6 +5,11 @@ class ApplicationStatus(Enum):
     REJECTED = 'Отклонена'
     PENDING = 'На рассмотрении'
 
+class Mode(Enum):
+    WEDDING = 'wedding'
+    BIRTH = 'birth'
+    DEATH = 'death'
+
 class ServiceType(Enum):
     MARRIAGE = 'Регистрация брака'
     BIRTH = 'Регистрация рождения'

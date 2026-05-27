@@ -58,5 +58,5 @@ def created_application_id(user_api):
     return response.json()["data"]["applicationid"]
 
 @pytest.fixture(scope="session")
-def db():
+def db_client():
     return db_queries
