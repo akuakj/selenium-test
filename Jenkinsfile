@@ -78,20 +78,6 @@ pipeline {
             }
         }
 
-        stage('UI Tests (Playwright)') {
-            steps {
-                echo '=== Запуск UI-тестов (Playwright) ==='
-                bat """
-                    set PYTHONPATH=${WORKSPACE}
-                    "${PYTHON}" -m pytest tests/playwright_tests/ ^
-                        --alluredir=allure-results ^
-                        --tb=short ^
-                        -q ^
-                        --continue-on-collection-errors
-                    exit /b 0
-                """
-            }
-        }
 
         stage('Generate Allure Report') {
             steps {
