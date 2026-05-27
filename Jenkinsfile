@@ -32,12 +32,12 @@ pipeline {
             steps {
                 echo '=== Установка зависимостей ==='
                 bat """
-                    "${PYTHON}" -m pip install --upgrade pip --quiet
-                    "${PYTHON}" -m pip install -r requirements.txt --quiet
+                    "%PYTHON%" -m pip install --upgrade pip --quiet
+                    "%PYTHON%" -m pip install -r requirements.txt --quiet
                 """
 
                 echo '=== Установка браузеров Playwright ==='
-                bat '"${PYTHON}" -m playwright install chromium'
+                bat '"%PYTHON%" -m playwright install chromium'
 
                 echo '=== Очистка предыдущих результатов ==='
                 bat """
@@ -53,7 +53,7 @@ pipeline {
                 echo '=== Запуск API-тестов ==='
                 bat """
                     set PYTHONPATH=${WORKSPACE}
-                    "${PYTHON}" -m pytest tests/tests_api/ ^
+                    "%PYTHON%" -m pytest tests/tests_api/ ^
                         --alluredir=allure-results ^
                         --tb=short ^
                         -q ^
@@ -68,7 +68,7 @@ pipeline {
                 echo '=== Запуск UI-тестов (Selenium) ==='
                 bat """
                     set PYTHONPATH=${WORKSPACE}
-                    "${PYTHON}" -m pytest tests/test_ui/ ^
+                    "%PYTHON%" -m pytest tests/test_ui/ ^
                         --alluredir=allure-results ^
                         --tb=short ^
                         -q ^
