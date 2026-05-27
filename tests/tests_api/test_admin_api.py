@@ -2,14 +2,14 @@ import allure
 import pytest
 from utils.logger import get_logger
 from allure_commons.types import Severity
-from API.models.admin_models import AdminResponse, ProcessResponse, AdminBadRequest
-from API.data.admin_data import get_valid_admin_payload, get_process_request_payload
-from API.data.user_data import get_valid_marriage_payload
+from api.models.admin_models import AdminResponse, ProcessResponse, AdminBadRequest
+from api.data.admin_data import get_valid_admin_payload, get_process_request_payload
+from api.data.user_data import get_valid_marriage_payload
 from utils.enums import StatusOfApplicationAPI
 
 logger = get_logger(__name__)
 
-@allure.epic("API")
+@allure.epic("api")
 @allure.feature("Тестирование admin-запросов")
 class TestAdminAPI:
 

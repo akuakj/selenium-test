@@ -1,5 +1,5 @@
 from faker import Faker
-from API.models.admin_models import AdminRequest, ProcessRequest
+from api.models.admin_models import AdminRequest, ProcessRequest
 
 fake = Faker('ru_RU')
 

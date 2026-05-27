@@ -1,6 +1,6 @@
 from requests import Response
-from API.client import ApiClient
-from API.models.user_models import UserRequest
+from api.client import ApiClient
+from api.models.user_models import UserRequest
 from utils.logger import get_logger
 
 # вынести в один клиент

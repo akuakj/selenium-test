@@ -1,10 +1,10 @@
 import pytest
 from faker import Faker
-from API.client import ApiClient
-from API.endpoints.user_api import UserAPI
-from API.endpoints.appilication_api import ApplicationAPI
-from API.endpoints.admin_api import AdminAPI
-from API.models.user_models import UserRequest
+from api.client import ApiClient
+from api.endpoints.user_api import UserAPI
+from api.endpoints.appilication_api import ApplicationAPI
+from api.endpoints.admin_api import AdminAPI
+from api.models.user_models import UserRequest
 from database.queries import db_queries
 
 fake = Faker('ru_RU')

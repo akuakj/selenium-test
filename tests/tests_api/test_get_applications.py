@@ -1,12 +1,12 @@
 import pytest
 import allure
 from allure_commons.types import Severity
-from API.models.application_models import GetApplicationsResponse
+from api.models.application_models import GetApplicationsResponse
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-@allure.epic('API')
+@allure.epic('api')
 @allure.feature('Тестирование get-запросов')
 class TestGetApplications:
 

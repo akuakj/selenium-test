@@ -1,16 +1,16 @@
 import allure
 import pytest
 from allure_commons.types import Severity
-from API.models.user_models import UserResponse, UserBadRequest
+from api.models.user_models import UserResponse, UserBadRequest
 from tests.conftest import db_client
 from utils.logger import get_logger
-from API.data.user_data import get_valid_marriage_payload, get_valid_birth_payload
+from api.data.user_data import get_valid_marriage_payload, get_valid_birth_payload
 from utils.enums import Mode
 
 logger = get_logger(__name__)
 
 
-@allure.epic("API")
+@allure.epic("api")
 @allure.feature("Тестирование user-запросов")
 class TestUserAPI:
 
@@ -93,7 +93,7 @@ class TestUserAPI:
         with allure.step("проверить данные запроса с данными в БД"):
             db_applicant = db_client.get_applicant_by_id(db_application.applicantid)
             assert payload.personalFirstName == db_applicant.name
-            assert payload.personalPhoneNumber == db_applicant.phonenumber
+            assert payload.personalPhoneNumber == str(db_applicant.phonenumber)
             assert payload.personalAddress == db_applicant.registration_address
 
             db_citizen = db_client.get_citizen_by_id(db_application.citizenid)

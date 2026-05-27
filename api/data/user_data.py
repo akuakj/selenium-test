@@ -1,5 +1,5 @@
 from faker import Faker
-from API.models.user_models import UserRequest
+from api.models.user_models import UserRequest
 from utils.fill_citizen_page import Gender
 
 fake = Faker('ru_RU')

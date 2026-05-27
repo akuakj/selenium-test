@@ -1,12 +1,17 @@
 pipeline {
+
     agent any
 
     triggers {
-        cron('0 8 * * *')
+        cron('0 9 * * *')
     }
 
     environment {
-        PYTHON     = "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+
+        PYTHON = "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+
+        ALLURE_HOME = tool 'allure'
+
         ALLURE_RESULTS = "${WORKSPACE}\\allure-results"
         ALLURE_REPORT  = "${WORKSPACE}\\allure-report"
 
@@ -20,158 +25,298 @@ pipeline {
     }
 
     options {
+
+        skipDefaultCheckout(true)
+
         buildDiscarder(logRotator(numToKeepStr: '10'))
+
         disableConcurrentBuilds()
+
         timeout(time: 60, unit: 'MINUTES')
+
         timestamps()
     }
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Debug Environment') {
+            steps {
+
+                powershell """
+                    chcp 65001
+
+                    Write-Host "=== WORKSPACE ==="
+                    Write-Host "${WORKSPACE}"
+
+                    Write-Host "=== FILES ==="
+                    Get-ChildItem
+
+                    Write-Host "=== PYTHON VERSION ==="
+                    & "${PYTHON}" --version
+
+                    Write-Host "=== ALLURE VERSION ==="
+                    & "${ALLURE_HOME}\\bin\\allure.bat" --version
+                """
+            }
+        }
+
         stage('Setup Environment') {
             steps {
+
                 echo '=== Установка зависимостей ==='
-                bat """
-                    "%PYTHON%" -m pip install --upgrade pip --quiet
-                    "%PYTHON%" -m pip install -r requirements.txt --quiet
-                """
 
-                echo '=== Установка браузеров Playwright ==='
-                bat '"%PYTHON%" -m playwright install chromium'
+                dir("${WORKSPACE}") {
 
-                echo '=== Очистка предыдущих результатов ==='
-                bat """
-                    if exist allure-results rmdir /s /q allure-results
-                    if exist allure-report rmdir /s /q allure-report
-                    mkdir allure-results
-                """
+                    bat """
+                        "${PYTHON}" -m pip install -r requirements.txt
+
+                        "${PYTHON}" -m pip install -e .
+                    """
+
+                    echo '=== Очистка старых отчетов ==='
+
+                    bat """
+                        if exist allure-results rmdir /s /q allure-results
+                        if exist allure-report rmdir /s /q allure-report
+                        if exist allure-report.zip del allure-report.zip
+
+                        mkdir allure-results
+                    """
+                }
+            }
+        }
+
+        stage('Debug Imports') {
+            steps {
+
+                dir("${WORKSPACE}") {
+
+                    powershell """
+                        chcp 65001
+
+                        \$env:PYTHONPATH = "${WORKSPACE}"
+
+                        Write-Host "=== PYTHONPATH ==="
+                        Write-Host \$env:PYTHONPATH
+
+                        Write-Host "=== IMPORT API ==="
+                        & "${PYTHON}" -c "import api; print('api OK')"
+
+                        Write-Host "=== IMPORT UI ==="
+                        & "${PYTHON}" -c "import UI; print('UI OK')"
+
+                        Write-Host "=== IMPORT DATABASE ==="
+                        & "${PYTHON}" -c "import database; print('DATABASE OK')"
+
+                        Write-Host "=== IMPORT UTILS ==="
+                        & "${PYTHON}" -c "import utils; print('UTILS OK')"
+                    """
+                }
             }
         }
 
         stage('API Tests') {
             steps {
-                echo '=== Запуск API-тестов ==='
-                bat """
-                    set PYTHONPATH=${WORKSPACE}
-                    "%PYTHON%" -m pytest tests/tests_api/ ^
-                        --alluredir=allure-results ^
-                        --tb=short ^
-                        -q ^
-                        --continue-on-collection-errors
-                    exit /b 0
-                """
+
+                echo '=== Запуск API тестов ==='
+
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+
+                    dir("${WORKSPACE}") {
+
+                        powershell """
+                            chcp 65001
+
+                            \$env:PYTHONPATH = "${WORKSPACE}"
+
+                            & "${PYTHON}" -m pytest tests/tests_api `
+                                --alluredir=allure-results `
+                                --tb=short `
+                                -v
+
+                            exit \$LASTEXITCODE
+                        """
+                    }
+                }
             }
         }
 
-        stage('UI Tests (Selenium)') {
+        stage('UI Tests') {
             steps {
-                echo '=== Запуск UI-тестов (Selenium) ==='
-                bat """
-                    set PYTHONPATH=${WORKSPACE}
-                    "%PYTHON%" -m pytest tests/test_ui/ ^
-                        --alluredir=allure-results ^
-                        --tb=short ^
-                        -q ^
-                        --continue-on-collection-errors
-                    exit /b 0
-                """
+
+                echo '=== Запуск UI тестов ==='
+
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+
+                    dir("${WORKSPACE}") {
+
+                        powershell """
+                            chcp 65001
+
+                            \$env:PYTHONPATH = "${WORKSPACE}"
+
+                            & "${PYTHON}" -m pytest tests/tests_ui `
+                                --alluredir=allure-results `
+                                --tb=short `
+                                -v
+
+                            exit \$LASTEXITCODE
+                        """
+                    }
+                }
             }
         }
 
-
-        stage('Generate Allure Report') {
+        stage('Playwright Tests') {
             steps {
-                echo '=== Генерация Allure HTML-отчёта ==='
-                bat 'allure generate allure-results --output allure-report --clean'
+
+                echo '=== Запуск Playwright тестов ==='
+
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+
+                    dir("${WORKSPACE}") {
+
+                        powershell """
+                            chcp 65001
+
+                            \$env:PYTHONPATH = "${WORKSPACE}"
+
+                            & "${PYTHON}" -m pytest tests/tests_ui/playwright_tests `
+                                --alluredir=allure-results `
+                                --tb=short `
+                                -v
+
+                            exit \$LASTEXITCODE
+                        """
+                    }
+                }
             }
         }
 
         stage('Publish Allure Report') {
             steps {
+
+                echo '=== Публикация Allure отчета ==='
+
                 allure([
                     includeProperties: false,
-                    jdk              : '',
-                    results          : [[path: 'allure-results']],
-                    report           : 'allure-report'
+                    jdk: '',
+                    results: [[path: 'allure-results']]
                 ])
             }
         }
 
         stage('Archive Report') {
             steps {
-                bat 'powershell Compress-Archive -Path allure-report -DestinationPath allure-report.zip -Force'
-                archiveArtifacts artifacts: 'allure-report.zip', fingerprint: true
+
+                echo '=== Архивация Allure отчета ==='
+
+                powershell """
+                    Compress-Archive `
+                        -Path allure-report `
+                        -DestinationPath allure-report.zip `
+                        -Force
+                """
+
+                archiveArtifacts(
+                    artifacts: 'allure-report.zip',
+                    fingerprint: true
+                )
             }
         }
     }
 
     post {
+
         always {
+
             script {
-                def summary = ''
-                def summaryFile = "${ALLURE_REPORT}\\widgets\\summary.json"
-                if (fileExists(summaryFile)) {
-                    def json    = readJSON file: summaryFile
-                    def stat    = json.statistic
-                    def passed  = stat.passed  ?: 0
-                    def failed  = stat.failed  ?: 0
-                    def broken  = stat.broken  ?: 0
-                    def skipped = stat.skipped ?: 0
-                    def total   = stat.total   ?: 0
-                    summary = """
-Результаты тестов:
-  Passed : ${passed}
-  Failed : ${failed}
-  Broken : ${broken}
-  Skipped: ${skipped}
-  Total  : ${total}
-"""
-                } else {
-                    summary = 'Файл summary.json не найден — отчёт мог не сгенерироваться.'
-                }
 
                 def buildStatus = currentBuild.currentResult ?: 'UNKNOWN'
-                def subject = "[Jenkins] ЗАГС автотесты — ${buildStatus} | сборка #${BUILD_NUMBER}"
+
+                def summary = ''
+
+                def summaryFile = "${ALLURE_REPORT}\\widgets\\summary.json"
+
+                if (fileExists(summaryFile)) {
+
+                    try {
+
+                        def raw = readFile(
+                            file: summaryFile,
+                            encoding: 'UTF-8'
+                        )
+
+                        def json = new groovy.json.JsonSlurper().parseText(raw)
+
+                        def stat = json.statistic
+
+                        summary = """
+Результаты тестов:
+
+Passed : ${stat.passed ?: 0}
+Failed : ${stat.failed ?: 0}
+Broken : ${stat.broken ?: 0}
+Skipped: ${stat.skipped ?: 0}
+Total  : ${stat.total ?: 0}
+"""
+
+                    } catch (e) {
+
+                        summary = "Не удалось прочитать summary.json: ${e}"
+                    }
+
+                } else {
+
+                    summary = 'Allure отчет отсутствует'
+                }
+
+                def subject = "[Jenkins] Автотесты — ${buildStatus} | Build #${BUILD_NUMBER}"
+
                 def body = """
-Привет!
+Автотесты завершены.
 
-Автоматический прогон тестов завершён.
-
-Сборка : #${BUILD_NUMBER}
-Статус : ${buildStatus}
-Ветка  : ${GIT_BRANCH ?: 'N/A'}
-Время  : ${new Date()}
+Build  : #${BUILD_NUMBER}
+Status : ${buildStatus}
+Branch : ${env.BRANCH_NAME ?: 'master'}
 
 ${summary}
 
-Полный Allure-отчёт доступен в Jenkins:
+Allure:
 ${BUILD_URL}allure/
 
-Архив отчёта прикреплён к письму.
-
----
-Jenkins CI | ${JOB_NAME}
+Jenkins Job:
+${JOB_NAME}
 """
+
                 emailext(
-                    to                : "${REPORT_RECIPIENT}",
-                    subject           : subject,
-                    body              : body,
-                    attachmentsPattern: 'allure-report.zip',
-                    mimeType          : 'text/plain'
+                    to: "${REPORT_RECIPIENT}",
+                    subject: subject,
+                    body: body,
+                    mimeType: 'text/plain'
                 )
             }
         }
 
         success {
-            echo 'Пайплайн завершён успешно.'
+            echo 'PIPELINE SUCCESS'
         }
 
         failure {
-            echo 'Пайплайн завершился с ошибкой — проверь логи выше.'
+            echo 'PIPELINE FAILURE'
         }
 
         cleanup {
-            bat 'if exist allure-report.zip del allure-report.zip'
+
+            bat """
+                if exist allure-report.zip del allure-report.zip
+            """
         }
     }
 }
