@@ -1,6 +1,8 @@
+import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.remote.webdriver import WebDriver
 from faker import Faker
 from UI.pages.home_page import HomePage
 from UI.pages.applicant_page import ApplicantPage
@@ -12,15 +14,51 @@ from UI.pages.admin_registration_page import AdminRegistrationPage
 from UI.pages.admin_applications_page import AdminApplicationsPage
 from utils.fill_citizen_page import fill_citizen_general
 
-fake = Faker('ru_RU')
+
+USE_SELENOID = os.getenv("USE_SELENOID", "false").lower() == "true"
+SELENOID_URL = os.getenv("SELENOID_URL", "http://localhost:4444/wd/hub")
+
+fake = Faker('ru-RU')
 
 @pytest.fixture(scope="function")
 def driver():
-    options = Options()
-    options.add_argument('--start-maximized')
-    driver = webdriver.Chrome(options=options)
+
+    if USE_SELENOID:
+        driver = _build_selenoid_driver()
+    else:
+        driver = _build_local_driver()
+
+    driver.maximize_window()
     yield driver
     driver.quit()
+
+
+def _build_local_driver() -> WebDriver:
+    options = Options()
+    return webdriver.Chrome(options=options)
+
+
+def _build_selenoid_driver() -> WebDriver:
+    options = Options()
+    options.set_capability("browserName", "chrome")
+    options.set_capability("browserVersion", "128.0")
+    options.set_capability(
+        "selenoid:options",
+        {
+            # Включить запись видео для упавших тестов
+            "enableVideo": False,
+            # Включить VNC (нужно для selenoid-ui live-view)
+            "enableVNC": True,
+            # Логи браузера
+            "enableLog": True,
+            # Имя теста появится в selenoid-ui
+            "name": "zagss-ui-tests",
+        },
+    )
+    return webdriver.Remote(
+        command_executor=SELENOID_URL,
+        options=options,
+    )
 
 @pytest.fixture
 def home_page(driver):
