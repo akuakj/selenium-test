@@ -18,7 +18,7 @@ from utils.fill_citizen_page import fill_citizen_general
 USE_SELENOID = os.getenv("USE_SELENOID", "false").lower() == "true"
 SELENOID_URL = os.getenv("SELENOID_URL", "http://localhost:4444/wd/hub")
 
-fake = Faker('ru-RU')
+fake = Faker('ru_RU')
 
 @pytest.fixture(scope="function")
 def driver():
@@ -28,13 +28,14 @@ def driver():
     else:
         driver = _build_local_driver()
 
-    driver.maximize_window()
     yield driver
     driver.quit()
 
 
 def _build_local_driver() -> WebDriver:
     options = Options()
+    options.add_argument('--headless') # тесты в фоне
+    options.add_argument('--window-size=1920,1080')
     return webdriver.Chrome(options=options)
 
 

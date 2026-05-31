@@ -33,7 +33,7 @@ class TestUserAPI:
                 f"Ожидался 200, получен {response.status_code}: {response.text}"
             )
 
-        with allure.step("проверить структуру ответа с пайдантик моделью"):
+        with allure.step("проверить структуру ответа с Pydantic-моделью"):
             user_body_response = UserResponse(**response.json())
 
         with allure.step("проверить, что в ответе присутствует поле merrigecertificateid"):
@@ -77,7 +77,7 @@ class TestUserAPI:
                 f"Ожидался 200, получен {response.status_code}: {response.text}"
             )
 
-        with allure.step("проверить структуру ответа с пайдантик моделью"):
+        with allure.step("проверить структуру ответа с Pydantic-моделью"):
             user_body_response = UserResponse(**response.json())
 
         with allure.step("в ответе присутсвует поле birthcertificateid"):
@@ -119,7 +119,7 @@ class TestUserAPI:
                 f"Ожидался 400, получен {response.status_code}"
             )
 
-        with allure.step("Проверить структуру ответа ошибки через Pydantic модель"):
+        with allure.step("Проверить структуру ответа ошибки через Pydantic-модель"):
             error = UserBadRequest(**response.json())
             assert hasattr(error, "code") and hasattr(error, "message")
 
@@ -141,6 +141,6 @@ class TestUserAPI:
                 f"Ожидался код ошибки, получен {response.status_code}"
             )
 
-        with allure.step("Проверить структуру ответа ошибки через Pydantic модель"):
+        with allure.step("Проверить структуру ответа ошибки через Pydantic-модель"):
             error = UserBadRequest(**response.json())
             assert hasattr(error, "code") and hasattr(error, "message")

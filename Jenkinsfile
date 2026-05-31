@@ -59,6 +59,7 @@ pipeline {
                     dir("${WORKSPACE}") {
                         powershell """
                             chcp 65001
+                            [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
                             \$env:PYTHONPATH = "${WORKSPACE}"
 
                             & "${PYTHON}" -m pytest tests/tests_api `

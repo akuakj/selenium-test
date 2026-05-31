@@ -49,7 +49,7 @@ class TestGetApplStatus:
             logger.info(f"Response status: {response.status_code}")
             logger.info(f"Response body: {response.text}")
 
-        with allure.step("Проверить структуру ошибки через Pydantic модель"):
+        with allure.step("Проверить структуру ошибки через Pydantic-модель"):
             status_body_response = ResponseNotFound(**response.json())
             logger.info(f"Parsed error: code={status_body_response.code}, message={status_body_response.message}")
 

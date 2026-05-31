@@ -1,3 +1,5 @@
     генерация allure-отчета:
          allure serve allure-results
 
+    параллельный запуск ui-тестов:
+        pytest tests/tests_ui -n 4

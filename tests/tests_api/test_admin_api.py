@@ -32,7 +32,7 @@ class TestAdminAPI:
                 f"Ожидался 200, получен {response.status_code}: {response.text}"
             )
 
-        with allure.step("проверить структуру ответа с пайдантик моделью"):
+        with allure.step("проверить структуру ответа с Pydantic-моделью"):
             admin_body_response = AdminResponse(**response.json())
 
         with allure.step("в ответе присутсвует поле staffid"):
