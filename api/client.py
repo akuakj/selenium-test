@@ -12,3 +12,6 @@ class ApiClient:
 
     def url(self, path: str) -> str:
         return f"{self.BASE_URL}{path}"
+
+    def safe_url(self, path: str) -> str:
+        return f"https://regoffice.senla.eu{path}"

@@ -3,35 +3,35 @@ import os
 from datetime import datetime
 
 DIR_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(DIR_PATH)
 
-def get_logger(name: str):
+_log_dir = f"{DIR_PATH}/logs"
+os.makedirs(_log_dir, exist_ok=True)
 
-    log_dir = f"{DIR_PATH}/logs"
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
+_timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+_log_file = os.path.join(_log_dir, f"test_run_{_timestamp}.log")
 
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    log_file = os.path.join(log_dir, f"test_run_{timestamp}.log")
+_formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
+def get_logger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
 
     if logger.handlers:
-        logger.handlers.clear()
+        return logger
 
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
 
-    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+
+    logger.setLevel(logging.DEBUG)
+
+    file_handler = logging.FileHandler(_log_file, encoding='utf-8')
     file_handler.setLevel(logging.DEBUG)
-    file_handler.setFormatter(formatter)
+    file_handler.setFormatter(_formatter)
 
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-    console_handler.setFormatter(formatter)
+    console_handler.setFormatter(_formatter)
 
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)

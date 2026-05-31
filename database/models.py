@@ -11,6 +11,7 @@ date_utc = Annotated[datetime, mapped_column(
 str_100 = Annotated[str, String(100)]
 str_50 = Annotated[str, String(50)]
 
+
 class Base(DeclarativeBase):
     type_annotation_map = {
         str_100: String(100),

@@ -11,7 +11,7 @@ def get_valid_marriage_payload(**kwargs):
         "personalLastName": fake.last_name(),
         "personalFirstName": fake.first_name(),
         "personalMiddleName": fake.middle_name(),
-        "personalPhoneNumber": fake.numerify('########'),
+        "personalPhoneNumber": fake.numerify('%#######'),
         "personalNumberOfPassport": fake.bothify('??#####', letters='АВРОНСТ'),
         "personalAddress": fake.street_address(),
         "citizenLastName": fake.last_name(),

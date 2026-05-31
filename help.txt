@@ -1,0 +1,3 @@
+    генерация allure-отчета:
+         allure serve allure-results
+

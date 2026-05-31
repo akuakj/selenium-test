@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# Рабочая директория внутри контейнера
 WORKDIR /app
 
 COPY requirements.txt .
