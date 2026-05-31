@@ -61,6 +61,7 @@ pipeline {
                             chcp 65001
                             [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
                             \$env:PYTHONPATH = "${WORKSPACE}"
+                            \$env:PYTHONIOENCODING = "utf-8"
 
                             & "${PYTHON}" -m pytest tests/tests_api `
                                 --alluredir=allure-results `
@@ -78,7 +79,10 @@ pipeline {
                     dir("${WORKSPACE}") {
                         powershell """
                             chcp 65001
+                            [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
                             \$env:PYTHONPATH = "${WORKSPACE}"
+                            \$env:PYTHONIOENCODING = "utf-8"
+
                             & "${PYTHON}" -m pytest tests/tests_ui `
                                 --alluredir=allure-results `
                                 --tb=short -v
