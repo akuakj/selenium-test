@@ -9,7 +9,6 @@ pipeline {
     environment {
 
         PYTHON = "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
-        ALLURE_HOME = tool 'allure'
         ALLURE_RESULTS = "${WORKSPACE}\\allure-results"
         ALLURE_REPORT  = "${WORKSPACE}\\allure-report"
 
@@ -83,7 +82,7 @@ pipeline {
                             \$env:PYTHONPATH = "${WORKSPACE}"
                             \$env:PYTHONIOENCODING = "utf-8"
 
-                            & "${PYTHON}" -m pytest tests/tests_ui `
+                            & "${PYTHON}" -m pytest tests/tests_ui -n 4 `
                                 --alluredir=allure-results `
                                 --tb=short -v
                             exit \$LASTEXITCODE
@@ -95,13 +94,6 @@ pipeline {
 
         stage('Generate Allure Report') {
             steps {
-                dir("${WORKSPACE}") {
-                    bat """
-                        "${ALLURE_HOME}\\bin\\allure.bat" generate allure-results ^
-                            -o allure-report --clean
-                    """
-                }
-                // публикует отчёт в Jenkins UI
                 allure([
                     includeProperties: false,
                     jdk: '',
