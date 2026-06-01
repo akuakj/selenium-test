@@ -32,7 +32,6 @@ class TestGetApplStatus:
             db_application = db_client.get_application_by_id(created_application_id)
             logger.info(f"DB application: id={db_application.applicationid}, kind={db_application.kindofapplication}, status={db_application.statusofapplication}")
 
-
         with allure.step("проверить что данные ответа соответствуют данным в БД"):
             assert status_body_response.data.kindofapplication == db_application.kindofapplication
             assert status_body_response.data.statusofapplication == db_application.statusofapplication

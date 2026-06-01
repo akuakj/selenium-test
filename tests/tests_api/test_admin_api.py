@@ -17,7 +17,7 @@ class TestAdminAPI:
     @allure.story("Регистрация админа")
     @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
-    def test_send_admin_request_returns_200(self, admin_api, db_client):
+    def test_send_admin_request_returns_200(self, admin_api, db_client, db_assert):
 
         with allure.step("Подготовить валидные данные для регистрации админа"):
             admin_payload = get_valid_admin_payload()
@@ -39,13 +39,7 @@ class TestAdminAPI:
             assert hasattr(admin_body_response.data, "staffid"), "Поле отсутствует в ответе"
 
         with allure.step("проверить данные админа в БД"):
-            db_staff = db_client.get_staff_by_id(admin_body_response.data.staffid)
-            assert admin_payload.personalLastName == db_staff.surname
-            assert admin_payload.personalFirstName == db_staff.name
-            assert admin_payload.personalMiddleName == db_staff.middlename
-            assert admin_payload.personalPhoneNumber == db_staff.phonenumber
-            assert admin_payload.personalNumberOfPassport == db_staff.passportnumber
-            assert admin_payload.dateofbirth == str(db_staff.dateofbirth)
+            db_assert.check_admin_matches_payload(admin_body_response.data.staffid, admin_payload)
 
     @allure.title("POST /sendAdminRequest — пустое поле фамилии → 400")
     @allure.story("Регистрация админа")
@@ -69,7 +63,7 @@ class TestAdminAPI:
     @allure.story("Проверка заявок")
     @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
-    def test_admin_approves_application(self, admin_api, user_api, db_client):
+    def test_admin_approves_application(self, admin_api, user_api, db_client, db_assert):
 
         with allure.step("Создать заявку на регистрацию брака"):
             marriage_payload = get_valid_marriage_payload()
@@ -113,10 +107,5 @@ class TestAdminAPI:
         with allure.step("Проверить что applicationid совпадает"):
             assert parsed.data.applicationid == applicationid
 
-        with allure.step("Проверить статус заявки в БД"):
-            db_status = db_client.get_application_status(applicationid)
-            assert db_status == StatusOfApplicationAPI.APPROVED.value
-
-        with allure.step("Проверить что staffid привязан к заявке в БД"):
-            db_application = db_client.get_application_by_id(applicationid)
-            assert db_application.staffid == staffid
+        db_assert.check_application_status(applicationid, StatusOfApplicationAPI.APPROVED.value)
+        db_assert.check_application_staff(applicationid, staffid)

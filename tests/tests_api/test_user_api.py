@@ -18,7 +18,7 @@ class TestUserAPI:
     @allure.story("Услуга регистрации брака")
     @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
-    def test_send_marriage_request_returns_200(self, user_api, db_client):
+    def test_send_marriage_request_returns_200(self, user_api, db_client, db_assert):
 
         with allure.step("Подготовить валидные данные для регистрации брака"):
             payload = get_valid_marriage_payload()
@@ -49,20 +49,15 @@ class TestUserAPI:
         with allure.step("проверить данные запроса с данными в БД"):
             assert payload.mode == Mode.WEDDING.value
 
-            db_applicant = db_client.get_applicant_by_id(db_application.applicantid)
-            assert payload.personalFirstName == db_applicant.name
-            assert payload.personalPhoneNumber == db_applicant.phonenumber
-            assert payload.personalAddress == db_applicant.registration_address
+            db_assert.check_applicant_matches_payload(db_application.applicantid, payload)
+            db_assert.check_citizen_matches_payload(db_application.citizenid, payload)
 
-            db_citizen = db_client.get_citizen_by_id(db_application.citizenid)
-            assert payload.citizenNumberOfPassport == db_citizen.passportnumber
-            assert payload.citizenMiddleName == db_citizen.middlename
 
     @allure.title("POST /sendUserRequest - регистрация рождения, валидные данные - 200")
     @allure.story("Услуга регистрации рождения")
     @allure.severity(Severity.CRITICAL)
     @pytest.mark.positive
-    def test_send_birth_request_returns_200(self, user_api, db_client):
+    def test_send_birth_request_returns_200(self, user_api, db_client, db_assert):
 
         with allure.step("Подготовить валидные данные для регистрации рождения"):
             payload = get_valid_birth_payload()
@@ -91,15 +86,9 @@ class TestUserAPI:
             assert user_body_response.data.citizenid == db_application.citizenid
 
         with allure.step("проверить данные запроса с данными в БД"):
-            db_applicant = db_client.get_applicant_by_id(db_application.applicantid)
-            assert payload.personalFirstName == db_applicant.name
-            assert payload.personalPhoneNumber == str(db_applicant.phonenumber)
-            assert payload.personalAddress == db_applicant.registration_address
+            db_assert.check_applicant_matches_payload(db_application.applicantid, payload)
+            db_assert.check_citizen_matches_payload(db_application.citizenid, payload)
 
-            db_citizen = db_client.get_citizen_by_id(db_application.citizenid)
-            assert payload.citizenFirstName == db_citizen.name
-            assert payload.citizenMiddleName == db_citizen.middlename
-            assert payload.citizenNumberOfPassport == db_citizen.passportnumber
 
     @allure.title("POST /sendUserRequest — пустой паспорт заявителя -> 400")
     @allure.story("Услуга регистрации брака")
@@ -122,6 +111,7 @@ class TestUserAPI:
         with allure.step("Проверить структуру ответа ошибки через Pydantic-модель"):
             error = UserBadRequest(**response.json())
             assert hasattr(error, "code") and hasattr(error, "message")
+
 
     @allure.title("POST /sendUserRequest — пустое значение в поле места рождения -> 400")
     @allure.story("Услуга регистрации рождения")

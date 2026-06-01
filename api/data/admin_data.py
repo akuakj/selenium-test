@@ -8,7 +8,7 @@ def get_valid_admin_payload(**overrides):
         "personalLastName": fake.last_name(),
         "personalFirstName": fake.first_name(),
         "personalMiddleName": fake.middle_name(),
-        "personalPhoneNumber": fake.numerify("########"),
+        "personalPhoneNumber": fake.numerify("%#######"),
         "personalNumberOfPassport": fake.bothify('??#####', letters='АВРОНСТ'),
         "dateofbirth": fake.date_of_birth(minimum_age=18).strftime('%Y-%m-%d')
     }

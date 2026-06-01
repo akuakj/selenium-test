@@ -3,3 +3,10 @@
 
     параллельный запуск ui-тестов:
         pytest tests/tests_ui -n 4
+
+
+    docker:
+        cd /mnt/d/projects/selenium-test
+        docker start selenoid
+        docker start selenoid-ui
+        docker run --rm --network host -e USE_SELENOID=true -e SELENOID_URL=http://localhost:4444/wd/hub zagss-tests
