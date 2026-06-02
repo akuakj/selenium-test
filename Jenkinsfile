@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     triggers {
-        cron('0 9 * * *')
+        cron('09 12 * * *')
     }
 
     environment {
@@ -140,7 +140,6 @@ Branch : ${env.BRANCH_NAME ?: 'master'}
 
 Результаты:
 ${summary}
-
 Allure отчет: ${BUILD_URL}allure/
 """,
                     mimeType: 'text/plain'
