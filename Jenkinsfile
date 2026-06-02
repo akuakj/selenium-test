@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     triggers {
-        cron('09 12 * * *')
+        cron('TZ=Europe/Moscow\n09 12 * * *')
     }
 
     environment {
